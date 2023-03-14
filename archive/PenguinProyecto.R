@@ -3,4 +3,6 @@ library(dplyr)
 library(ggplot2)
 library(ggthemes)
 
-penguins1 <- read.csv('penguins.csv')
+penguins <- read.csv('penguins.csv')
+ggplot(penguins, aes(x=factor(Island))) +
+  geom_bar()
