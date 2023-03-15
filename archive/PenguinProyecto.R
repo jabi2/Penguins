@@ -108,6 +108,11 @@ GraficoFertilidad <- ggplot(BaseDeNidos, aes(y=cuenta, x=factor(Clutch.Completio
 plot(GraficoFertilidad)
 
 #Pinguinos fertiles: tienen un nido
-FertilidadPorEspecie<-BaseDeNidos%>%group_by(Especies,Clutch.Completion=="Yes")
+FertilidadPorEspecie<-filter(BaseDeNidos, Clutch.Completion =="Yes")
+Fertilidad<-ggplot(FertilidadPorEspecie, aes(x=factor(Especies), y=cuenta, fill=Especies))+
+  geom_bar(stat = "identity", col='black')+
+  labs()
+plot(Fertilidad)
+
 
 
