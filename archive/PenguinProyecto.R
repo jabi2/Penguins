@@ -98,3 +98,16 @@ Gentoo = penguins0 %>% select(Especies, TamAleta, masaKg, Sex) %>% filter(Especi
 Gentoo <- Gentoo[!is.na(Gentoo$TamAleta),]
 sumGentoo<-summarise(Gentoo, PromedioAleta = mean(TamAleta), MedianaAleta=median(TamAleta), MaximoAleta=max(TamAleta), MinimoAleta=min(TamAleta),PromedioPeso = mean(masaKg), MedianaPeso=median(masaKg), MaximoPeso=max(masaKg), MinimoPeso=min(masaKg), Hembras=sum(Gentoo$Sex=="FEMALE"), Machos=sum(Gentoo$Sex=="MALE"))
 
+# Nidada por especie: Describe que especie de pinguinos es mas fertil
+BaseDeNidos = penguins0 %>% group_by(Especies, Clutch.Completion) %>% summarise(cuenta=n())
+GraficoFertilidad <- ggplot(BaseDeNidos, aes(y=cuenta, x=factor(Clutch.Completion), fill= Especies))+ 
+  geom_bar(stat = "identity",col='black') +
+  facet_wrap(facets = ~Especies,drop = FALSE, nrow = 1) +
+  labs(title="Fertilidad de cada especie", x ="Nidos de la población total de pinüinos" , y = "Cant. de nidos")+
+  theme(axis.text.x = element_blank())
+plot(GraficoFertilidad)
+
+#Pinguinos fertiles: tienen un nido
+FertilidadPorEspecie<-BaseDeNidos%>%group_by(Especies,Clutch.Completion=="Yes")
+
+
