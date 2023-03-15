@@ -15,7 +15,7 @@ penguins0$masaKg <- penguins0$Body.Mass..g. *1/1000
   #Se creo la variable "masaKg" para poner peso en Kg en lugar de gramos
 
 #Se le cambio el nombre a la variable del tamaño de la aleta y se expresó en centímetros
-penguins0$TamAleta <- penguins0$Flipper.Length..mm.
+penguins0$TamAleta <- penguins0$Flipper.Length..mm. *1/10
 
 # Bar Chart Distribucion pinguinos por isla
 theme_set(theme_bw())
@@ -48,7 +48,7 @@ theme_set(theme_bw())
 pesos<-penguins0 %>% group_by(Especies)
 grafica3<- ggplot(pesos, aes(y=masaKg , x=factor(Especies), fill=Especies)) +
   geom_boxplot(col='black') +
-  labs(title="Peso de pingüinos por especie", x = 'Especie',y="Peso en Kg", caption="Primer Proyecto: Pingüinos, Introducción a Data Science") +
+  labs(title="Peso de pingüinos por especie", x = 'Especie',y="Peso (Kg)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science") +
   theme(axis.text.x = element_blank())
 plot(grafica3)
 
@@ -57,28 +57,28 @@ plot(grafica3)
   theme_set(theme_bw())
   grafica4.1<- ggplot(penguins0, aes(y=masaKg , x=Culmen.Length..mm. , col=Especies)) +
     geom_point() +
-    labs(title="Peso de pingüino vs Largo de pico", x = 'Largo de pico en mm',y="Peso en Kg", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
+    labs(title="Peso de pingüino vs Largo de pico", x = 'Largo de pico (mm)',y="Peso (Kg)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
   plot(grafica4.1)
   
   # Grafica Peso y Altura
   theme_set(theme_bw())
   grafica4.2<- ggplot(penguins0, aes(y=masaKg , x=Culmen.Depth..mm. , col=Especies)) +
     geom_point() +
-    labs(title="Peso de pingüino vs Altura de pico", x = 'Altura de pico en mm',y="Peso en Kg", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
+    labs(title="Peso de pingüino vs Altura de pico", x = 'Altura de pico (mm)',y="Peso (Kg)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
   plot(grafica4.2)
   
   # Grafica Altura y Largo de pico
   theme_set(theme_bw())
   grafica4.3<- ggplot(penguins0, aes(y=Culmen.Depth..mm. , x=Culmen.Length..mm. , col=Especies)) +
     geom_point() +
-    labs(title="Altura de pico vs Largo de pico", x = 'Largo de pico en mm',y='Altura de pico en mm', caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
+    labs(title="Altura de pico vs Largo de pico", x = 'Largo de pico (mm)',y='Altura de pico (mm)', caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
   plot(grafica4.3)
 
 #Gráfica Tamaño de aleta por especie 
 theme_set(theme_bw())
 graficaEspecieAleta<- ggplot(penguins0, aes(y=TamAleta , x=factor(Especies), fill=Especies)) +
   geom_boxplot(col='black') +
-  labs(title="Tamaño de las aletas por especie", x = 'Especie',y="Tamaño de la aleta (mm)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science") +
+  labs(title="Tamaño de las aletas por especie", x = 'Especie',y="Tamaño de la aleta (cm)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science") +
   theme(axis.text.x = element_blank())
 plot(graficaEspecieAleta)
 
