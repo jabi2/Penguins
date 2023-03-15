@@ -14,6 +14,8 @@ penguins0$Especies <- penguins0$Species
 penguins0$masaKg <- penguins0$Body.Mass..g. *1/1000
   #Se creo la variable "masaKg" para poner peso en Kg en lugar de gramos
 
+#Se le cambio el nombre a la variable del tamaño de la aleta y se expresó en centímetros
+penguins0$TamAleta <- penguins0$Flipper.Length..mm.
 
 # Bar Chart Distribucion pinguinos por isla
 theme_set(theme_bw())
@@ -71,4 +73,28 @@ plot(grafica3)
     geom_point() +
     labs(title="Altura de pico vs Largo de pico", x = 'Largo de pico en mm',y='Altura de pico en mm', caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
   plot(grafica4.3)
+
+#Gráfica Tamaño de aleta por especie 
+theme_set(theme_bw())
+graficaEspecieAleta<- ggplot(penguins0, aes(y=TamAleta , x=factor(Especies), fill=Especies)) +
+  geom_boxplot(col='black') +
+  labs(title="Tamaño de las aletas por especie", x = 'Especie',y="Tamaño de la aleta (mm)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science") +
+  theme(axis.text.x = element_blank())
+plot(graficaEspecieAleta)
+
+#Análisis Especie Adelie
+Adelie = penguins0 %>% select(Especies, TamAleta, masaKg, Sex) %>% filter(Especies== "Adelie Penguin (Pygoscelis adeliae)")
+Adelie <- Adelie[!is.na(Adelie$TamAleta),]
+Adelie <- Adelie[!is.null(Adelie$Sex),]
+sumAdelie<-summarise(Adelie, PromedioAleta = mean(TamAleta), MedianaAleta=median(TamAleta), MaximoAleta=max(TamAleta), MinimoAleta=min(TamAleta),PromedioPeso = mean(masaKg), MedianaPeso=median(masaKg), MaximoPeso=max(masaKg), MinimoPeso=min(masaKg), Hembras=sum(Adelie$Sex=="FEMALE"), Machos=sum(Adelie$Sex=="MALE"))
+
+#Análisis Especie Chinstrap
+Chinstrap = penguins0 %>% select(Especies, TamAleta, masaKg, Sex) %>% filter(Especies== "Chinstrap penguin (Pygoscelis antarctica)")
+Chinstrap <- Chinstrap[!is.na(Chinstrap$TamAleta),]
+sumChinstrap<-summarise(Chinstrap, PromedioAleta = mean(TamAleta), MedianaAleta=median(TamAleta), MaximoAleta=max(TamAleta), MinimoAleta=min(TamAleta),PromedioPeso = mean(masaKg), MedianaPeso=median(masaKg), MaximoPeso=max(masaKg), MinimoPeso=min(masaKg), Hembras=sum(Chinstrap$Sex=="FEMALE"), Machos=sum(Chinstrap$Sex=="MALE"))
+
+#Análisis Especie Gentoo
+Gentoo = penguins0 %>% select(Especies, TamAleta, masaKg, Sex) %>% filter(Especies== "Gentoo penguin (Pygoscelis papua)")
+Gentoo <- Gentoo[!is.na(Gentoo$TamAleta),]
+sumGentoo<-summarise(Gentoo, PromedioAleta = mean(TamAleta), MedianaAleta=median(TamAleta), MaximoAleta=max(TamAleta), MinimoAleta=min(TamAleta),PromedioPeso = mean(masaKg), MedianaPeso=median(masaKg), MaximoPeso=max(masaKg), MinimoPeso=min(masaKg), Hembras=sum(Gentoo$Sex=="FEMALE"), Machos=sum(Gentoo$Sex=="MALE"))
 
