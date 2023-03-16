@@ -117,28 +117,8 @@ graficaMachosPT<- ggplot(Machos, aes(y=masaKg , x=TamAleta , col=Especies)) +
   labs(title="Peso de pingüino vs Tamaño de aleta de los machos según Especie", x = 'Tamaño de aleta',y="Peso (Kg)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
 plot(graficaMachosPT)
 
-#Gráfica Adelie Hembras Machos peso vs Tamaño aleta
-theme_set(theme_bw())
-graficaAdeliePT<- ggplot(Adelie, aes(y=masaKg , x=TamAleta , col=Sex)) +
-  geom_point() +
-  labs(title="Peso de pingüino vs Tamaño de aleta según el sexo de la especie Adelie", x = 'Tamaño de aleta',y="Peso (Kg)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
-plot(graficaAdeliePT)
 
-#Gráfica Chainstrap Hembras Machos peso vs Tamaño aleta
-theme_set(theme_bw())
-graficaChinstrapPT<- ggplot(Chinstrap, aes(y=masaKg , x=TamAleta , col=Sex)) +
-  geom_point() +
-  labs(title="Peso de pingüino vs Tamaño de aleta según el sexo de la especie Chinstrap", x = 'Tamaño de aleta',y="Peso (Kg)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
-plot(graficaChinstrapPT)
-
-#Gráfica Gentoo Hembras Machos peso vs Tamaño aleta
-theme_set(theme_bw())
-graficaGentooPT<- ggplot(Gentoo, aes(y=masaKg , x=TamAleta , col=Sex)) +
-  geom_point() +
-  labs(title="Peso de pingüino vs Tamaño de aleta según el sexo de la especie Gentoo", x = 'Tamaño de aleta',y="Peso (Kg)", caption="Primer Proyecto: Pingüinos, Introducción a Data Science")
-plot(graficaGentooPT)
-  
-
+ 
 
 # Nidada por especie: Describe que especie de pinguinos es mas fertil
 BaseDeNidos = penguins0 %>% group_by(Especies, Clutch.Completion) %>% summarise(cuenta=n())
