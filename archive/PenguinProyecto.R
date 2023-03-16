@@ -85,17 +85,20 @@ plot(graficaEspecieAleta)
 #Análisis Especie Adelie
 Adelie = penguins0 %>% select(Especies, TamAleta, masaKg, Sex) %>% filter(Especies== "Adelie Penguin (Pygoscelis adeliae)")
 Adelie <- Adelie[!is.na(Adelie$TamAleta),]
-Adelie <- Adelie[!is.null(Adelie$Sex),]
+Adelie <- Adelie[!Adelie$Sex=="",]
 sumAdelie<-summarise(Adelie, PromedioAleta = mean(TamAleta), MedianaAleta=median(TamAleta), MaximoAleta=max(TamAleta), MinimoAleta=min(TamAleta),PromedioPeso = mean(masaKg), MedianaPeso=median(masaKg), MaximoPeso=max(masaKg), MinimoPeso=min(masaKg), Hembras=sum(Adelie$Sex=="FEMALE"), Machos=sum(Adelie$Sex=="MALE"))
 
 #Análisis Especie Chinstrap
 Chinstrap = penguins0 %>% select(Especies, TamAleta, masaKg, Sex) %>% filter(Especies== "Chinstrap penguin (Pygoscelis antarctica)")
 Chinstrap <- Chinstrap[!is.na(Chinstrap$TamAleta),]
+Chinstrap <- Chinstrap[!Chinstrap$Sex=="",]
 sumChinstrap<-summarise(Chinstrap, PromedioAleta = mean(TamAleta), MedianaAleta=median(TamAleta), MaximoAleta=max(TamAleta), MinimoAleta=min(TamAleta),PromedioPeso = mean(masaKg), MedianaPeso=median(masaKg), MaximoPeso=max(masaKg), MinimoPeso=min(masaKg), Hembras=sum(Chinstrap$Sex=="FEMALE"), Machos=sum(Chinstrap$Sex=="MALE"))
 
 #Análisis Especie Gentoo
 Gentoo = penguins0 %>% select(Especies, TamAleta, masaKg, Sex) %>% filter(Especies== "Gentoo penguin (Pygoscelis papua)")
 Gentoo <- Gentoo[!is.na(Gentoo$TamAleta),]
+Gentoo <- Gentoo[!Gentoo$Sex=="",]
+Gentoo <- Gentoo[!Gentoo$Sex==".",]
 sumGentoo<-summarise(Gentoo, PromedioAleta = mean(TamAleta), MedianaAleta=median(TamAleta), MaximoAleta=max(TamAleta), MinimoAleta=min(TamAleta),PromedioPeso = mean(masaKg), MedianaPeso=median(masaKg), MaximoPeso=max(masaKg), MinimoPeso=min(masaKg), Hembras=sum(Gentoo$Sex=="FEMALE"), Machos=sum(Gentoo$Sex=="MALE"))
 
 # Nidada por especie: Describe que especie de pinguinos es mas fertil
