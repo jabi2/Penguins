@@ -103,16 +103,32 @@ BaseDeNidos = penguins0 %>% group_by(Especies, Clutch.Completion) %>% summarise(
 GraficoFertilidad <- ggplot(BaseDeNidos, aes(y=cuenta, x=factor(Clutch.Completion), fill= Especies))+ 
   geom_bar(stat = "identity",col='black') +
   facet_wrap(facets = ~Especies,drop = FALSE, nrow = 1) +
-  labs(title="Fertilidad de cada especie", x ="Nidos de la población total de pinüinos" , y = "Cant. de nidos")+
+  labs(title="Fecundidad total de cada especie", x ="Nidos de la población total de pinüinos" , y = "Cant. de nidos")+
   theme(axis.text.x = element_blank())
 plot(GraficoFertilidad)
 
-#Pinguinos fertiles: tienen un nido
-FertilidadPorEspecie<-filter(BaseDeNidos, Clutch.Completion =="Yes")
+#Gráfico de barras de pinguinos fertiles: Cantidad de nidos que contiene por lo menos un huevo.
+FertilidadPorEspecie<-filter(BaseDeNidos, Clutch.Completion =="Yes")  #Filtrado de nidos con más de un huevo
 Fertilidad<-ggplot(FertilidadPorEspecie, aes(x=factor(Especies), y=cuenta, fill=Especies))+
   geom_bar(stat = "identity", col='black')+
-  labs()
+  labs(title="Fertilidad por especie", x ="Nidos con más de un huevo" , y = "Cant. de nidos") +
+  theme(axis.text.x = element_blank())
 plot(Fertilidad)
 
+#Gráfico de barras de pinguinos infertiles: Nido que no contiene ningún huevo.
+InfertilidadPorEspecie<-filter(BaseDeNidos, Clutch.Completion =="No")  #Filtrado de nidos vacios
+Infertilidad<-ggplot(InfertilidadPorEspecie, aes(x=factor(Especies), y=cuenta, fill=Especies))+
+  geom_bar(stat = "identity", col='black')+
+  labs(title="Infertilidad por especie de pinguinos", x ="Nidos vacios" , y = "Cant. de nidos vacios") +
+  theme(axis.text.x = element_blank())
+plot(Infertilidad)
 
-
+#Gráfico Peso por Isla: Permite deducir que Isla tiene más recursos naturales. 
+theme_set(theme_bw())
+GraficaPesoporIsla<- ggplot(penguins0, aes(x=Island , y=masaKg, fill=Island)) +
+  geom_boxplot(col='black') +
+  labs(title="Densidad de peso por Isla", x = 'Isla',y="Peso de todas las especias", caption="Primer Proyecto: Pingüinos, Introducción a Data Science") +
+  theme(axis.text.x = element_blank())
+plot(GraficaPesoporIsla)
+  
+  
